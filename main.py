@@ -15,21 +15,25 @@ from typing import List, Tuple
 from langchain.schema import format_document
 from langchain.prompts.prompt import PromptTemplate
 from langchain.schema.output_parser import StrOutputParser
-
+from glob import glob
 # Load environment variables
 # load_dotenv()
 
 # Load documents and create the retriever
-paths = [
-    "./information/DNI_tramite.txt",
-    "./information/pasaporte_tramite.txt",
-    "./information/preguntas.txt",
-]
+# paths = [
+#     "./information/DNI_tramite.txt",
+#     "./information/pasaporte_tramite.txt",
+#     "./information/preguntas.txt",
+#     "./atencion_sabados.txt",
+#     ""
+# ]
+
+paths = glob("./information/*.txt")
 
 loaders = [TextLoader(file_path=path, encoding='utf8') for path in paths]
 documents = [doc for loader in loaders for doc in loader.load()]
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=4000, chunk_overlap=200)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=6000, chunk_overlap=400) #4000. 200
 documents = text_splitter.split_documents(documents)
 
 embeddings = OpenAIEmbeddings()
