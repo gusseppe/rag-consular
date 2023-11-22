@@ -113,7 +113,7 @@ conversational_qa_chain = loaded_memory | standalone_question | retrieved_docume
 
 
 # Streamlit UI Setup
-st.title("Chatbot Consular")
+st.title("Asistente Consular")
 st.markdown("Hola soy tu Agente Consular 🤓. Hazme una pregunta 🙋‍♂️")
 
 if "messages" not in st.session_state:
