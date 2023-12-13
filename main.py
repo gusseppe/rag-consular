@@ -54,7 +54,7 @@ def check_password():
 
 if not check_password():
     st.stop()  # Do not continue if check_password is not True.
-    
+
 paths = glob("./information/*.txt")
 
 loaders = [TextLoader(file_path=path, encoding='utf8') for path in paths]
@@ -78,7 +78,8 @@ loaded_memory = RunnablePassthrough.assign(
 )
 
 ANSWER_PROMPT = ChatPromptTemplate.from_template(
-    template="""Eres un asistente consular de Peru para el consulado de Atlanta. Tu nombre es BravoAgent. Usa tu base de conocimiento para responder preguntas de usuarios. 
+    template="""Eres un asistente consular de Peru para el consulado de Atlanta. Tu nombre es BravoAgent. Tu funcion es ayudar a responder preguntas del consulado de Atlanta, USA. 
+    Usa tu base de conocimiento para responder preguntas de usuarios. 
     Responde la pregunta basándote únicamente en el siguiente contexto: {context}
     Pregunta: {question}"""
 )
